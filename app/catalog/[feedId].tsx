@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   SafeAreaView,
-  StatusBar,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useLibraryStore, CatalogFeed } from '@src/lib/store/useLibraryStore';
 import { useAppStore } from '@src/lib/store/useAppStore';
 import { OPDSEntry, OPDSLink } from '@src/types/opds';
 import { opdsClient } from '@src/api/opdsClient';
+import { EINK_COLORS, EINK_SPACING } from '@src/lib/theme';
 
 /**
  * Extract a URL from an OPDS entry's links by rel type.
@@ -40,7 +41,7 @@ export default function CatalogScreen() {
       setLoading(true);
       setError(null);
 
-      const fullBaseUrl = gremoeryToBaseUrl(grimooryUrl);
+      const fullBaseUrl = grimooryToBaseUrl(grimooryUrl);
 
       if (!feedId) {
         // Show list of all configured feeds
@@ -167,7 +168,7 @@ export default function CatalogScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      <StatusBar barStyle={theme === 'dark' ? 'dark-content' : 'light-content'} />
+      <StatusBar style={theme === 'dark' ? 'dark' : 'light'} />
 
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
         <TouchableOpacity
@@ -259,7 +260,7 @@ export default function CatalogScreen() {
   );
 }
 
-function gremoeryToBaseUrl(url: string): string {
+function grimooryToBaseUrl(url: string): string {
   if (!url) return '';
   // Remove API paths if present
   return url.replace(/\/api\/.*$/, '').replace(/\/+$/, '');

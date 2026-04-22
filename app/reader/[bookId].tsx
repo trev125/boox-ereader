@@ -324,7 +324,7 @@ function ReaderSettingsPanel({
   const spacing = EINK_SPACING;
 
   return (
-    <Modal visible animationType="fade" transparent={false} statusBarTranslucent>
+    <Modal visible animationType="fade" transparent={false} statusBarTranslucent={true}>
       <View style={[styles.settingsContainer, { backgroundColor: colors.background }]}>
         <View style={styles.settingsHeader}>
           <Text style={[styles.settingsTitle, { color: colors.text }]}>Reading Settings</Text>
@@ -537,7 +537,7 @@ function TOCPanel({
   const colors = EINK_COLORS.dark;
 
   return (
-    <Modal visible animationType="fade" transparent={false} statusBarTranslucent>
+    <Modal visible animationType="fade" transparent={false} statusBarTranslucent={true}>
       <View style={[styles.tocContainer, { backgroundColor: colors.background }]}>
         <View style={styles.tocHeader}>
           <Text style={[styles.tocTitle, { color: colors.text }]}>Contents</Text>
@@ -599,7 +599,7 @@ function DictionaryPopup({
   const popupY = Math.min(rect.y + rect.height + 10, SCREEN_HEIGHT - 200);
 
   return (
-    <Modal visible animationType="fade" transparent statusBarTranslucent>
+    <Modal visible animationType="fade" transparent statusBarTranslucent={true}>
       <View style={styles.overlay}>
         <TouchableOpacity style={styles.overlay} onPress={onClose} />
         <View

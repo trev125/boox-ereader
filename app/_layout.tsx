@@ -1,14 +1,19 @@
 import { Stack } from 'expo-router';
+import { useEffect } from 'react';
+import { disableAnimations } from '../src/utils/disableAnimations';
 
 export default function RootLayout() {
+  useEffect(() => {
+    disableAnimations();
+  }, []);
+
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="library" options={{ headerShown: false }} />
-      <Stack.Screen name="catalog/[feedId]" options={{ headerShown: false }} />
-      <Stack.Screen name="reader/[bookId]" options={{ headerShown: false }} />
-      <Stack.Screen name="settings" options={{ headerShown: false }} />
-      <Stack.Screen name="sync-status" options={{ headerShown: false }} />
-    </Stack>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        animation: 'none',
+        gestureEnabled: false,
+      }}
+    />
   );
 }
